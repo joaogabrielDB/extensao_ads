@@ -1,10 +1,16 @@
 const express = require('express');
+const app = express();
+const mysql = require('mysql');
+const config = require('./config/database.js');
+
 const cors = require('cors');
 
-const app = express();
+// Conexão com o banco de dados
+const db = mysql.createConnection(config);
 
 app.use(cors());
 app.use(express.json());
+
 
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
@@ -24,6 +30,11 @@ app.post('/usuario', (req, res) => {
   });
 });
 
+db.connect((err) => {
+  if (err) throw err;
+  console.log('Conectado ao banco de dados MySQL!');
+});
+
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  console.log('Servidor rodando na porta 3000!');
 });

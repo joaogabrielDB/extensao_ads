@@ -11,7 +11,7 @@ export class AuthService {
     return this.http.post('http://localhost:3000/login', { username, password });
   }
 
-  usuario(name, string, username: string, password: string) {
+  cadastro(name: string, username: string, password: string) {
     return this.http.post('http://localhost:3000/usuario', { name, username, password });
   }
 }
