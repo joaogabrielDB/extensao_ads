@@ -8,8 +8,8 @@ import { AuthService } from '../auth.service';
 export class CadastroComponent {
   constructor(private authService: AuthService) {}
 
-  cadastro(name: string, username: string, password: string) {
-    this.authService.cadastro(name, username, password).subscribe(res => {
+  cadastro(name: string, email: string, password: string) {
+    this.authService.cadastro(name, email, password).subscribe(res => {
       console.log(res);
       // aqui você pode fazer algo com a resposta, como armazená-la em um serviço de estado ou redirecionar o usuário
     });

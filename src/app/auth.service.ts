@@ -7,11 +7,11 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string) {
-    return this.http.post('http://localhost:3000/login', { username, password });
+  login(email: string, password: string) {
+    return this.http.post('/login', { email, password });
   }
 
-  cadastro(name: string, username: string, password: string) {
-    return this.http.post('http://localhost:3000/usuario', { name, username, password });
+  cadastro(name: string, email: string, password: string) {
+    return this.http.post('http://localhost:3000/usuario', { name, email, password });
   }
 }

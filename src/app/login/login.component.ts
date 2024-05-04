@@ -1,17 +1,29 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  constructor(private authService: AuthService) {}
 
-  login(username: string, password: string) {
-    this.authService.login(username, password).subscribe(res => {
-      console.log(res);
-      // aqui você pode fazer algo com a resposta, como armazená-la em um serviço de estado ou redirecionar o usuário
+  public email:string = "";
+  public password:string = "";
+  
+  constructor(private authService: AuthService, private router: Router) {}
+
+  login() {
+    this.authService.login(this.email, this.password).subscribe((response: any) => {
+      if (response.success) {
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/home']);
+      } else {
+        //this.errorMessage = response.message;
+      }
+    }, (error) => {
+      console.log(error);
+      //this.errorMessage = 'Ocorreu um erro durante o login. Por favor, tente novamente mais tarde.';
     });
   }
 }
