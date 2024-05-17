@@ -8,6 +8,7 @@ import { PerfilComponent     } from './perfil/perfil.component';
 import { TarefasComponent    } from './tarefas/tarefas.component';
 import { DisciplinaComponent } from './disciplina/disciplina.component';
 import { CategoriasComponent } from './categorias/categorias.component';
+import { HomeComponent       } from './home/home.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,12 @@ const routes: Routes = [
     path: 'categorias',
     component: CategoriasComponent
   },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' },
 ];
 
 @NgModule({

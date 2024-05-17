@@ -8,10 +8,12 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string) {
-    return this.http.post('/login', { email, password });
+    debugger;
+    return this.http.post('http://localhost:3000/login', { email, password });
   }
 
   cadastro(name: string, email: string, password: string) {
-    return this.http.post('http://localhost:3000/usuario', { name, email, password });
+    debugger;
+    return this.http.post('http://localhost:3000/cadastro', { name, email, password });
   }
 }

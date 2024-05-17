@@ -1,16 +1,19 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule         } from '@angular/core';
+import { FormsModule      } from '@angular/forms';
+import { BrowserModule    } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
+import { AppRoutingModule     } from './app-routing.module';
+import { AppComponent         } from './app.component';
+
+import { LoginComponent       } from './login/login.component';
+import { CadastroComponent    } from './cadastro/cadastro.component';
 import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
-import { PerfilComponent } from './perfil/perfil.component';
-import { TarefasComponent } from './tarefas/tarefas.component';
-import { DisciplinaComponent } from './disciplina/disciplina.component';
-import { CategoriasComponent } from './categorias/categorias.component';
+import { PerfilComponent      } from './perfil/perfil.component';
+import { TarefasComponent     } from './tarefas/tarefas.component';
+import { DisciplinaComponent  } from './disciplina/disciplina.component';
+import { CategoriasComponent  } from './categorias/categorias.component';
+import { HomeComponent        } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +24,14 @@ import { CategoriasComponent } from './categorias/categorias.component';
     PerfilComponent,
     TarefasComponent,
     DisciplinaComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

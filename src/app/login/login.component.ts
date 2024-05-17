@@ -8,15 +8,16 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  public email:string = "";
+  public email   :string = "";
   public password:string = "";
   
   constructor(private authService: AuthService, private router: Router) {}
 
-  login() {
-    this.authService.login(this.email, this.password).subscribe((response: any) => {
-      if (response.success) {
-        localStorage.setItem('token', response.token);
+  public login() {
+    debugger;
+    this.authService.login(this.email, this.password).subscribe((res:any) => {
+      if (res.success) {
+        localStorage.setItem('token', res.token);
         this.router.navigate(['/home']);
       } else {
         //this.errorMessage = response.message;
