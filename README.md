@@ -6,6 +6,7 @@ Integrantes: Gabriel Eduardo, João Gabriel e Joice Cristina
 
 <a href="https://nodejs.org/en/download/prebuilt-installer">NodeJs</a>
 <br><br>
-Angular: npm install -g @angular/cli
-<br><br>
 <a href="https://www.oracle.com/mysql/technologies/mysql-enterprise-edition-downloads.html#windows">MySQL</a>
+<br><br>
+Angular: npm install -g @angular/cli
+
