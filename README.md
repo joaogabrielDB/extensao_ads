@@ -10,3 +10,11 @@ Integrantes: Gabriel Eduardo, João Gabriel e Joice Cristina
 <br><br>
 Angular: npm install -g @angular/cli
 
+
+## Para rodar
+
+Backend: 
+
+- Entrar na pasta server e rodar `node index.js`
+
+- Na pasta principal rodar `ng s ou ng server`
