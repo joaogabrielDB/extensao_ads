@@ -1,4 +1,4 @@
-.menu-lateral {
+.menu {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,15 +12,19 @@
   flex-direction: column;
 }
 
-.menu-lateral .topo {
+.menu .topo {
   background-color: #444;
+  border-radius: 1.2rem;
   padding: 10px;
   margin-bottom: 20px;
   text-align: center;
 }
+
+.menu .topo h2 {
+  color: #fff;
+}
   
-.menu-lateral .central {
-  background-color: #555;
+.menu .central {
   padding: 10px;
   margin-bottom: 20px;
 
@@ -30,14 +34,21 @@
   justify-content: space-between;
 }
   
-.menu-lateral .central a {
+.menu .central a {
   color: #fff;
   text-decoration: none;
   display: block;
   margin-bottom: 10px;
+  background-color: #444;
+  border-radius: 1.2rem;
+  padding: 2px 2px 2px 14px;
 }
 
-.menu-lateral .sair {
+.menu .central a:hover {
+  font-size: 17px;
+}
+
+.menu .sair {
   //background-color: #444;
   padding: 10px;
   //align-self: flex-end;
@@ -45,8 +56,13 @@
   position: fixed;
 }
 
-.menu-lateral .sair a {
+.menu .sair a {
   color: #fff;
+  font-weight: 700;
+}
+
+.menu .sair a:hover {
+  color: #dc3545;
   font-weight: 700;
 }
   

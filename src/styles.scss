@@ -8,14 +8,16 @@ a:hover {
     color: green;
 }
 
-.content {
-    display: flex;
+/* CSS para o menu lateral */
+.menu-lateral {
+    width: 200px; /* Defina a largura que você deseja para o menu lateral */
+    height: 100vh; /* Isso fará com que o menu lateral ocupe toda a altura da tela */
+    float: left; /* Isso fará com que o menu lateral flutue à esquerda */
 }
 
-app-menu-lateral {
-    flex: 1; /* Isso fará com que o menu lateral ocupe 1/3 do espaço disponível */
-}
-  
-.perfil {
-    flex: 2; /* Isso fará com que o perfil ocupe 2/3 do espaço disponível */
+/* CSS para as telas de perfil e home */
+.tela {
+    width: calc(97% - 200px); /* Isso fará com que a tela ocupe o restante da largura da tela, subtraindo a largura do menu lateral */
+    height: 100vh; /* Isso fará com que a tela ocupe toda a altura da tela */
+    float: right; /* Isso fará com que a tela flutue à direita */
 }
