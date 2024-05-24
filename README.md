@@ -1,10 +1,10 @@
 # Trabalho de extensão 4 e 6
-<p>Integrantes: Gabriel Eduardo, João Gabriel e Joice Cristina</p>
+Integrantes: Gabriel Eduardo, João Gabriel e Joice Cristina
 
-<h3>Sistema de Tarefas para Estudo</h3>
+## Sistema de Tarefas para Estudo</h3>
 
-<h5>Intaladores:</h5>
+### Intaladores
 
-<p><a href="https://nodejs.org/en/download/prebuilt-installer">NodeJs</a></p>
-<p>Angular: npm install -g @angular/cli</p>
-<p><a>MySQL</a></p>
+<a href="https://nodejs.org/en/download/prebuilt-installer">NodeJs</a>
+Angular: npm install -g @angular/cli
+<a>MySQL</a>
