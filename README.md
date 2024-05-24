@@ -5,5 +5,6 @@
 
 <h5>Intaladores:</h5>
 
-<p><a href="https://nodejs.org/en/download/package-manager">NodeJs</a></p>
-<p><a href="">Angular</a></p>
+<p><a href="https://nodejs.org/en/download/prebuilt-installer">NodeJs</a></p>
+<p>Angular: npm install -g @angular/cli</p>
+<p><a>MySQL</a></p>
