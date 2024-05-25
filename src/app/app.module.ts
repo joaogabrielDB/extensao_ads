@@ -14,6 +14,8 @@ import { TarefasComponent     } from './tarefas/tarefas.component';
 import { DisciplinaComponent  } from './disciplina/disciplina.component';
 import { CategoriasComponent  } from './categorias/categorias.component';
 import { HomeComponent        } from './home/home.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,13 @@ import { HomeComponent        } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule 
   ],
-  providers: [],
+  providers: [
+    ToastrService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
