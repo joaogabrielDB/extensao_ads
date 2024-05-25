@@ -51,8 +51,8 @@ app.post('/login', (req, res) => {
         if (comparision) {
           req.session.loggedin = true;
           req.session.username = email;
-          console.log("Login de bom")
-          res.redirect('/home')
+          console.log("Login bem-sucedido");
+          res.json({ success: true });
         } else {
           res.send('Senha incorreta!');
         }
