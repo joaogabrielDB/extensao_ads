@@ -19,4 +19,4 @@ CREATE TABLE TASK (
     DTINI DATE,
     DTFIM DATE,
     PRIMARY KEY (ID)
-); 
+);
