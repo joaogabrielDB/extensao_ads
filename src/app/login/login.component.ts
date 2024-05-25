@@ -14,7 +14,6 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   public login() {
-    debugger;
     this.authService.login(this.email, this.password).subscribe((res:any) => {
       if (res.success) {
         localStorage.setItem('token', res.token);

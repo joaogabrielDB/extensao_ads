@@ -85,7 +85,7 @@ app.post('/cadastro', (req, res) => {
     const query = `INSERT INTO USUARIO (NOME, EMAIL, PASSWORD) VALUES ('${name}', '${email}', '${hash}')`;
     db.query(query, (err, result) => {
       if (err) throw err;
-      res.send(result);
+      res.json({ success: true });
     });
   });
 });

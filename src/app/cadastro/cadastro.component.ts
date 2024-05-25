@@ -14,10 +14,9 @@ export class CadastroComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   cadastro() {
-    debugger;
+    debugger
     this.authService.cadastro(this.name, this.email, this.password).subscribe((res:any) => {
       if (res.success) {
-        localStorage.setItem('token', res.token);
         this.router.navigate(['/login']);
       } else {
         //this.errorMessage = response.message;
