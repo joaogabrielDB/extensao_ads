@@ -24,29 +24,39 @@ app.use(session({
 }));
 
 app.use(cors({
-  origin: 'http://localhost:4200', // substitua com a URL do seu front-end
-  methods: ['GET', 'POST'], // os métodos HTTP permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'] // os headers permitidos
+  origin: 'http://localhost:4200',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
-  db.query(`SELECT * FROM USUARIO WHERE EMAIL = '${email}'`, async (error, results) => {
+  db.query(`SELECT * FROM USUARIO WHERE EMAIL = '${email}'`, (error, results) => {
     if (error) {
-      console.log(error);
+      console.error('Erro na consulta:', error);
+      res.status(500).send('Erro no servidor');
+      return;
     }
 
     if (results.length > 0) {
-      const comparision = await bcrypt.compare(password, results[0].password)
+      const verificar = results[0];
+      bcrypt.compare(password, verificar.PASSWORD, (err, comparision) => {
+        if (err) {
+          console.error('Erro ao comparar senhas:', err);
+          res.status(500).send('Erro no servidor');
+          return;
+        }
 
-      if (comparision) {
-        req.session.loggedin = true;
-        req.session.username = email;
-        res.redirect('/home');
-      } else {
-        res.send('Senha incorreta!');
-      }
+        if (comparision) {
+          req.session.loggedin = true;
+          req.session.username = email;
+          console.log("Login de bom")
+          res.redirect('/home')
+        } else {
+          res.send('Senha incorreta!');
+        }
+      });
     } else {
       res.send('Usuário não existe!');
     }
