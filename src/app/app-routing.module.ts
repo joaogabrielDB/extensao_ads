@@ -9,35 +9,41 @@ import { TarefasComponent    } from './tarefas/tarefas.component';
 import { DisciplinaComponent } from './disciplina/disciplina.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { HomeComponent       } from './home/home.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent
+      path: 'login'
+    , component: LoginComponent
   }, 
   {
-    path: 'cadastro',
-    component: CadastroComponent
+      path: 'cadastro'
+    , component: CadastroComponent
   },
   {
-    path: 'perfil',
-    component: PerfilComponent
+      path: 'perfil'
+    , component: PerfilComponent
+    , canActivate: [AuthGuard]
   },
   {
-    path: 'tarefas',
-    component: TarefasComponent
+      path: 'tarefas'
+    , component: TarefasComponent
+    , canActivate: [AuthGuard]
   },
   {
-    path: 'disciplina',
-    component: DisciplinaComponent
+      path: 'disciplina'
+    , component: DisciplinaComponent
+    , canActivate: [AuthGuard]
   },
   {
-    path: 'categorias',
-    component: CategoriasComponent
+      path: 'categorias'
+    , component: CategoriasComponent
+    , canActivate: [AuthGuard]
   },
   {
-    path: 'home',
-    component: HomeComponent
+      path: 'home'
+    , component: HomeComponent
+    , canActivate: [AuthGuard]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' },
