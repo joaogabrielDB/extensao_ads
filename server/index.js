@@ -32,7 +32,7 @@ app.use(cors({
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
-  db.query(`SELECT * FROM USUARIO WHERE EMAIL = '${email}'`, (error, results) => {
+  db.query(`SELECT * FROM USUARIOS WHERE EMAIL = '${email}'`, (error, results) => {
     if (error) {
       console.error('Erro na consulta:', error);
       res.status(500).send('Erro no servidor');
@@ -82,7 +82,7 @@ app.post('/cadastro', (req, res) => {
     }
 
     // Usa o hash da senha ao invés da senha em texto plano
-    const query = `INSERT INTO USUARIO (NOME, EMAIL, PASSWORD) VALUES ('${name}', '${email}', '${hash}')`;
+    const query = `INSERT INTO USUARIOS (NOME, EMAIL, PASSWORD) VALUES ('${name}', '${email}', '${hash}')`;
     db.query(query, (err, result) => {
       if (err) throw err;
       res.json({ success: true });
