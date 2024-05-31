@@ -1,52 +1,68 @@
-.menu-lateral {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 300px;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-  }
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  //width: 16%;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
 
-  .menu-lateral .topo {
-    background-color: #444;
-    padding: 10px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .menu-lateral .central {
-    background-color: #555;
-    padding: 10px;
-    margin-bottom: 20px;
+.menu .topo {
+  background-color: #444;
+  border-radius: 1.2rem;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
 
-    display: flex;
-    flex-direction: column;
-    height: 20rem;
-    justify-content: space-between;
-  }
+.menu .topo h2 {
+  color: #fff;
+}
   
-  .menu-lateral .central a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    margin-bottom: 10px;
-  }
+.menu .central {
+  padding: 10px;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  height: 20rem;
+  justify-content: space-between;
+}
   
-  .menu-lateral .sair {
-    //background-color: #444;
-    padding: 10px;
-    //align-self: flex-end;
-    bottom: 0;
-    position: fixed;
-  }
-  
-  .menu-lateral .sair a {
-    color: #fff;
-    font-weight: 700;
-  }
+.menu .central a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  background-color: #444;
+  border-radius: 1.2rem;
+  padding: 2px 2px 2px 14px;
+}
+
+.menu .central a:hover {
+  font-size: 17px;
+}
+
+.menu .sair {
+  //background-color: #444;
+  padding: 10px;
+  //align-self: flex-end;
+  bottom: 0;
+  position: fixed;
+}
+
+.menu .sair a {
+  color: #fff;
+  font-weight: 700;
+}
+
+.menu .sair a:hover {
+  color: #dc3545;
+  font-weight: 700;
+}
   

@@ -8,14 +8,14 @@
       <form>
         <div class="form-group p-2">
             <label for="email">E-mail</label>
-            <input type="text" id="email" class="form-control" placeholder="Digite seu email">
+            <input type="text" id="email" name="email" [(ngModel)]="email" class="form-control" placeholder="Digite seu email">
         </div>
         <div class="form-group p-2">
             <label for="senha">Senha</label>
-            <input type="password" id="senha" class="form-control" placeholder="Digite sya senha">
+            <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control" placeholder="Digite sua senha">
         </div>
         <div class="form-group d-flex justify-content-between p-2">
-            <button class="btn btn-success  align-self-center" type="submit">Entrar</button>
+            <button class="btn btn-success  align-self-center" type="submit" (click)="login()">Entrar</button>
             <p class="pt-3"><a href="/cadastro">Cadastrar</a></p>
         </div>
       </form>
