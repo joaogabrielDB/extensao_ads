@@ -5,6 +5,8 @@ const jwt     = require('jsonwebtoken');
 const session = require('express-session');
 const config  = require('./config/database.js');
 const cors    = require('cors');
+const routeCadastro  = require('./routes/CadastroRoute.js');
+const routeLogin  = require('./routes/LoginRoute.js');
 
 const app = express();
 
@@ -18,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(session({
-  secret: 'seu segredo aqui',
+  secret: 'aSxaefdb@#41',
   resave: false,
   saveUninitialized: true,
 }));
@@ -28,6 +30,9 @@ app.use(cors({
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+app.use('/cadastro', routeCadastro);
+app.use('/login', routeLogin);
 
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
@@ -64,35 +69,13 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-  if (req.session.loggedin) {
-    res.send('Bem vindo de volta, ' + req.session.username + '!');
-  } else {
-    res.send('Por favor, faça login para ver está página!');
-  }
-});
-
-app.post('/cadastro', (req, res) => {
-  const { name, email, password } = req.body;
-  // Gera o hash da senha
-  bcrypt.hash(password, saltRounds, function(err, hash) {
-    if (err) {
-      console.log(err);
-      res.status(500).send('Erro ao criptografar a senha');
-      return;
-    }
-
-    // Usa o hash da senha ao invés da senha em texto plano
-    const query = `INSERT INTO USUARIOS (NOME, EMAIL, PASSWORD) VALUES ('${name}', '${email}', '${hash}')`;
-    db.query(query, (err, result) => {
-      if (err) throw err;
-      res.json({ success: true });
-    });
-  });
+  if (req.session.loggedin)  res.send('Bem vindo de volta, ' + req.session.username + '!');
+  else res.send('Por favor, faça login para ver está página!');
 });
 
 db.connect((err) => {
   if (err) throw err;
-  console.log('Conectado ao banco de dados MySQL!');
+  else console.log('Conectado ao banco de dados MySQL!');
 });
 
 app.listen(PORT, () => {

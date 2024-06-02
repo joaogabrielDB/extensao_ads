@@ -11,7 +11,8 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string) {
-    return this.http.post(`${this.apiUrl}/login`, { email, password });
+    debugger;
+    return this.http.post(`${this.apiUrl}/login/`, { email, password });
   }
 
   isLoggedIn(): boolean {
@@ -24,6 +25,7 @@ export class AuthService {
   }
 
   cadastro(name: string, email: string, password: string) {
-    return this.http.post(`${this.apiUrl}/cadastro`, { name, email, password });
+    debugger;
+    return this.http.post(`${this.apiUrl}/cadastro/`, { name, email, password });
   }
 }

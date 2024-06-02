@@ -17,15 +17,15 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
   public login() {
+    debugger;
     this.authService.login(this.email, this.password).subscribe((res:any) => {
       debugger
-      if (res.success) {
-        this.toastr.success('Login efetuado com sucesso!', 'SUCESSO:');
+      if (res.blOk) {
+        this.toastr.success(res.message, 'SUCESSO:');
         localStorage.setItem('token', res.token);
         this.router.navigate(['/home']);
       } else {
-        this.toastr.error(res.error, 'ERRO:');
-        this.toastr.error('Login não efetuado, tente novamente!', 'ERRO:');
+        this.toastr.error(res.message, 'ERRO:');
       }
     }, (error) => {
       console.log(error);

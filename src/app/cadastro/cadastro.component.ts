@@ -14,17 +14,19 @@ export class CadastroComponent {
 
   constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
 
-  cadastro() {
+  async cadastro() {
+    debugger;
     this.authService.cadastro(this.name, this.email, this.password).subscribe((res:any) => {
-      if (res.success) {
-        this.toastr.success('Cadastro efetuado com sucesso!', 'SUCESSO:');
+      debugger;
+      if (res.blOk) {
+        this.toastr.success(res.message, 'SUCESSO:');
         this.router.navigate(['/login']);
       } else {
-        //this.errorMessage = response.message;
+        this.toastr.error(res.message, 'ERRO:');
       }
     }, (error) => {
       console.log(error);
-      //this.errorMessage = 'Ocorreu um erro durante o login. Por favor, tente novamente mais tarde.';
+      this.toastr.error('Ocorreu um erro durante o login. Por favor, tente novamente!');
     });
   }
 }
