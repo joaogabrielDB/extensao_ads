@@ -14,10 +14,3 @@ db.connect((err) => {
         return;
     }
 });
-
-const cadastroUsuario = (nome, email, password, callback) => {
-    const query = `INSERT INTO USUARIOS (NOME, EMAIL, PASSWORD) VALUES (?, ?, ?)`;
-    db.query(query, [nome, email, password], callback);
-};
-
-module.exports = { cadastroUsuario };

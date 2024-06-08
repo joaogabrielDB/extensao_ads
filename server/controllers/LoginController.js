@@ -10,7 +10,7 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-const login = (req, res)=>{
+const login = (req, res) => {
   const { email, password } = req.body;
   let blOk = true, message = '';
 
@@ -34,7 +34,7 @@ const login = (req, res)=>{
           req.session.loggedin = true;
           req.session.username = email;
           message = 'Login efetuado com sucesso!';
-          res.json({ blOk, message });
+          res.json({ user: result, blOk, message });
         } else {
           message = 'Senha incorreta!';
           res.json({ blOk: false, message });

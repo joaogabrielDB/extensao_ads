@@ -13,7 +13,6 @@ db.connect((err) => {
         console.error('Erro ao conectar ao banco de dados:', err);
         return;
     }
-    console.log('Conectado ao banco de dados');
 });
 
 const login = (email, callback) => {

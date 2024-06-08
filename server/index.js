@@ -5,8 +5,10 @@ const jwt     = require('jsonwebtoken');
 const session = require('express-session');
 const config  = require('./config/database.js');
 const cors    = require('cors');
-const routeCadastro  = require('./routes/CadastroRoute.js');
-const routeLogin  = require('./routes/LoginRoute.js');
+
+const routeCadastro   = require('./routes/CadastroRoute.js');
+const routeLogin      = require('./routes/LoginRoute.js');
+const routeCategorias = require('./routes/CategoriasRoute.js');
 
 const app = express();
 
@@ -33,45 +35,7 @@ app.use(cors({
 
 app.use('/cadastro', routeCadastro);
 app.use('/login', routeLogin);
-
-app.post('/login', (req, res) => {
-  const { email, password } = req.body;
-
-  db.query(`SELECT * FROM USUARIOS WHERE EMAIL = '${email}'`, (error, results) => {
-    if (error) {
-      console.error('Erro na consulta:', error);
-      res.status(500).send('Erro no servidor');
-      return;
-    }
-
-    if (results.length > 0) {
-      const verificar = results[0];
-      bcrypt.compare(password, verificar.PASSWORD, (err, comparision) => {
-        if (err) {
-          console.error('Erro ao comparar senhas:', err);
-          res.status(500).send('Erro no servidor');
-          return;
-        }
-
-        if (comparision) {
-          req.session.loggedin = true;
-          req.session.username = email;
-          console.log("Login bem-sucedido");
-          res.json({ success: true });
-        } else {
-          res.send('Senha incorreta!');
-        }
-      });
-    } else {
-      res.send('Usuário não existe!');
-    }
-  });
-});
-
-app.get('/home', (req, res) => {
-  if (req.session.loggedin)  res.send('Bem vindo de volta, ' + req.session.username + '!');
-  else res.send('Por favor, faça login para ver está página!');
-});
+app.use('/categoria', routeCategorias);
 
 db.connect((err) => {
   if (err) throw err;

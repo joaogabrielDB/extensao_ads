@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { CadastroService } from '../services/cadastro.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 @Component({
@@ -12,7 +12,7 @@ export class CadastroComponent {
   public name:string = '';
   public password:string = '';
 
-  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
+  constructor(private authService: CadastroService, private router: Router, private toastr: ToastrService) {}
 
   async cadastro() {
     debugger;

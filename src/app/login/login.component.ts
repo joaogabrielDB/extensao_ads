@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
+import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,15 +14,17 @@ export class LoginComponent {
   public email   :string = "";
   public password:string = "";
   
-  constructor(private authService: AuthService, private router: Router, private toastr: ToastrService) {}
+  constructor(private authService: LoginService, private router: Router, private toastr: ToastrService) {}
 
   public login() {
     debugger;
     this.authService.login(this.email, this.password).subscribe((res:any) => {
       debugger
       if (res.blOk) {
+        const user = res.user[0];
         this.toastr.success(res.message, 'SUCESSO:');
         localStorage.setItem('token', res.token);
+        localStorage.setItem('userId', user.ID);
         this.router.navigate(['/home']);
       } else {
         this.toastr.error(res.message, 'ERRO:');
