@@ -21,3 +21,11 @@ a:hover {
     height: 100vh; /* Isso fará com que a tela ocupe toda a altura da tela */
     float: right; /* Isso fará com que a tela flutue à direita */
 }
+
+.btn-alert {
+    background-color: orange;
+}
+
+.btn-alert:hover {
+    background-color: #c7ac7b;
+}
