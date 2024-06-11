@@ -34,7 +34,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }),
     BrowserAnimationsModule 
   ],
   providers: [

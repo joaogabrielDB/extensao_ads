@@ -17,9 +17,7 @@ export class LoginComponent {
   constructor(private authService: LoginService, private router: Router, private toastr: ToastrService) {}
 
   public login() {
-    debugger;
     this.authService.login(this.email, this.password).subscribe((res:any) => {
-      debugger
       if (res.blOk) {
         const user = res.user[0];
         this.toastr.success(res.message, 'SUCESSO:');
@@ -31,7 +29,7 @@ export class LoginComponent {
       }
     }, (error) => {
       console.log(error);
-      //this.errorMessage = 'Ocorreu um erro durante o login. Por favor, tente novamente mais tarde.';
+      this.toastr.error('Ocorreu um erro durante o login. Por favor, tente novamente mais tarde.', 'ERRO:');
     });
   }
 }

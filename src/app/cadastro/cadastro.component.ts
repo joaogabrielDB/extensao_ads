@@ -15,9 +15,7 @@ export class CadastroComponent {
   constructor(private authService: CadastroService, private router: Router, private toastr: ToastrService) {}
 
   async cadastro() {
-    debugger;
     this.authService.cadastro(this.name, this.email, this.password).subscribe((res:any) => {
-      debugger;
       if (res.blOk) {
         this.toastr.success(res.message, 'SUCESSO:');
         this.router.navigate(['/login']);

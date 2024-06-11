@@ -12,50 +12,90 @@ export class CategoriasComponent implements OnInit {
   
   public contentView = 1;
   public categorias:any = [];
-  public userId:number = this.loginService.getUserId();
-  public selectedId: number | undefined; 
+  public userId    :number = this.loginService.getUserId();
+  public selectedId  : number | undefined; 
   public selectedNome: string | undefined; 
   
-  constructor(private service: CategoriasService, private loginService: LoginService, private toastr: ToastrService) {}
+  constructor(
+      private service     : CategoriasService
+    , private loginService: LoginService
+    , private toastr      : ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.getCategorias();
   }
 
   getCategorias() {
-    debugger
     this.service.getCategorias(this.userId).subscribe((res:any) => {
       if(res.blOk) {
-        console.log(res);
         this.categorias = res.data;
-        console.log(this.categorias);
       } else {
         this.toastr.error(res.message, 'ERRO:');
       }
-    })
+    });
   }
 
-  edit(categoria: any) {
+  editar(categoria: any) {
     this.contentView = 2;
-    console.log(categoria);
+    this.selectedId = categoria.ID;
+    this.selectedNome = categoria.NOME;
   }
 
-  add() {
+  adicionar() {
     this.contentView = 3;
   }
 
-  view(categoria: any) {
+  visualizar(categoria: any) {
     this.contentView = 4;
-    console.log(categoria);
-     this.selectedId = categoria.ID; // atualiza o ID selecionado
-    this.selectedNome = categoria.NOME; // atualiza o NOME selecionado
+    this.selectedId = categoria.ID;
+    this.selectedNome = categoria.NOME;
   }
 
-  del(categoria: any) {
-    console.log(categoria);
+  deletar(categoria: any) {
+    this.service.excluirCategoria(categoria.ID).subscribe((res:any) => {
+      if(res.blOk) {
+        this.toastr.success("Categoria excluida!", 'SUCESSO:');
+        this.sair();
+      } else {
+        this.toastr.error('Falha ao excluir categoria!', 'ERRO:');
+      }
+    });
+  }
+
+  salvar() {
+    let data: any = {};
+    if(this.selectedId) {
+      data.ID = this.selectedId;
+      data.NOME = this.selectedNome;
+      data.ID_USUARIO = this.userId;
+      this.service.editarCategoria(data).subscribe((res:any) => {
+        if(res.blOk) {
+          this.toastr.success("Categoria editada!", 'SUCESSO:');
+          this.sair();
+        } else {
+          this.toastr.error('Falha ao editar categoria!', 'ERRO:');
+        }
+      });
+    } else {
+      data.NOME = this.selectedNome;
+      data.ID_USUARIO = this.userId;
+      this.service.addCategoria(data).subscribe((res:any) => {
+        if(res.blOk) {
+          this.toastr.success("Categoria salva!", 'SUCESSO:');
+          this.sair();
+        } else {
+          this.toastr.error('Falha ao salvar categoria!', 'ERRO:');
+        }
+      });
+    }
   }
 
   sair() {
+    this.selectedId = undefined;
+    this.selectedNome = "";
+    this.categorias = [];
+    this.getCategorias();
     this.contentView = 1;
   }
 }

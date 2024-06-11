@@ -24,8 +24,39 @@ const listar = (id, callback) => {
       callback(null, results);
     }
   });
-  // const result = db.query(query);
-  // return result;
 };
 
-module.exports = { listar };
+const adicionar = (req, callback) => {
+  db.query(`INSERT INTO CATEGORIAS (NOME, ID_USUARIO) VALUE ('${req.body.data.NOME}', ${req.body.data.ID_USUARIO})`, (error, results) => {
+    if (error) {
+      console.error('Erro ao adicionar:', error);
+      callback(error, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+const editar = (req, callback) => {
+  db.query(`UPDATE CATEGORIAS SET CATEGORIAS.NOME = '${req.body.data.NOME}' WHERE CATEGORIAS.ID = ${req.body.data.ID}`, (error, results) => {
+    if (error) {
+      console.error('Erro na consulta:', error);
+      callback(error, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+const excluir = (req, callback) => {
+  db.query(`DELETE FROM CATEGORIAS WHERE CATEGORIAS.ID = ${req.body.data}`, (error, results) => {
+    if (error) {
+      console.error('Erro na consulta:', error);
+      callback(error, null);
+    } else {
+      callback(null, results);
+    }
+  });
+};
+
+module.exports = { listar, adicionar, editar, excluir };

@@ -11,7 +11,18 @@ export class CategoriasService {
   constructor(private http: HttpClient) { }
 
   getCategorias(id: number) {
-    debugger
     return this.http.post(`${this.apiUrl}/categoria/listar`, {id});
+  }
+
+  addCategoria(data: any) {
+    return this.http.post(`${this.apiUrl}/categoria/adicionar`, {data});
+  }
+
+  editarCategoria(data: any) {
+    return this.http.post(`${this.apiUrl}/categoria/editar`, {data});
+  }
+
+  excluirCategoria(data: any) {
+    return this.http.post(`${this.apiUrl}/categoria/excluir`, {data});
   }
 }

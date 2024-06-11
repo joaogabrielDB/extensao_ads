@@ -9,6 +9,7 @@ const cors    = require('cors');
 const routeCadastro   = require('./routes/CadastroRoute.js');
 const routeLogin      = require('./routes/LoginRoute.js');
 const routeCategorias = require('./routes/CategoriasRoute.js');
+const routeDisciplina = require('./routes/DisciplinaRoute.js');
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use(cors({
 app.use('/cadastro', routeCadastro);
 app.use('/login', routeLogin);
 app.use('/categoria', routeCategorias);
+app.use('/disciplina', routeDisciplina);
 
 db.connect((err) => {
   if (err) throw err;

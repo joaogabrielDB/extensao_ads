@@ -9,16 +9,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string) {
-    debugger;
-    const res = this.http.post(`${this.apiUrl}/login/`, { email, password });
-    debugger;
-    return res;
-      // localStorage.setItem('token', user.token);
-      // localStorage.setItem('userId', user.id);
+    return this.http.post(`${this.apiUrl}/login/`, { email, password });
   }
 
   getUserId() : any {
-    return localStorage.getItem('userId');  // Recupera o ID do usuário
+    return localStorage.getItem('userId');
   }
 
   isLoggedIn(): boolean {
@@ -28,7 +23,7 @@ export class LoginService {
 
   logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('userId');  // Remove o ID do usuário
+    localStorage.removeItem('userId');
   }
 }
 

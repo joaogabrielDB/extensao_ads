@@ -4,47 +4,63 @@
 <div class="tela" *ngIf="contentView == 1">
   <h1>Categorias</h1>
   <div class="mt-5 mb-3">
-    <button type="button" class="btn btn-primary" (click)="add()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+    <button type="button" class="btn btn-primary" (click)="adicionar()"><i class="fa fa-plus" aria-hidden="true"></i></button>
   </div>
-    <div class="col-11">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Id</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Ações</th>
-          </tr>
-        </thead>
-        <tbody class="table-group-divider">
-          <tr *ngFor="let categoria of categorias; index as i">
-            <th scope="row">{{ i + 1 }}</th>
-            <td>{{ categoria.ID }}</td>
-            <td>{{ categoria.NOME }}</td>
-            <td>
-              <button type="button" class="btn btn-primary" (click)="view(categoria)"><i class="fa fa-eye" aria-hidden="true"></i></button>
-              <button type="button" class="btn btn-success" (click)="edit(categoria)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-              <button type="button" class="btn btn-danger" (click)="del(categoria)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            </td>
-          </tr>
-          <div *ngIf="categorias.length == 0" class="text-center"><p>Nenhum dado encontrado</p></div>
-        </tbody>
-      </table>
-    </div>
+  <div class="col-8">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr *ngFor="let categoria of categorias; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ categoria.ID }}</td>
+          <td>{{ categoria.NOME }}</td>
+          <td>
+            <button type="button" class="btn btn-primary" (click)="visualizar(categoria)"><i class="fa fa-eye" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-success" (click)="editar(categoria)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-danger" (click)="deletar(categoria)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+          </td>
+        </tr>
+        <div *ngIf="categorias.length == 0" class="text-center"><p>Nenhum dado encontrado</p></div>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <div class="tela" *ngIf="contentView == 2">
   <h1>Editar Categoria</h1>
+  <div class="d-flex">
+    <div class="col-1 d-flex flex-column">
+      <label for="id">Id:</label>
+      <input type="number" [(ngModel)]="selectedId" class="border-1 border-black inputs" disabled>
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Nome:</label>
+      <input type="text" [(ngModel)]="selectedNome" class="border-1 border-black inputs">
+    </div>
+  </div>
   <div class="mt-4">
-    <button type="button" class="btn btn-success" (click)="sair()">Salvar</button>
+    <button type="button" class="btn btn-success" (click)="salvar()">Salvar</button>
     <button type="button" class="btn btn-alert ms-2" (click)="sair()">Voltar</button>
   </div>
 </div>
 
 <div class="tela" *ngIf="contentView == 3">
   <h1>Adicionar Categoria</h1>
+  <div class="d-flex">
+    <div class="col-2 d-flex flex-column"> 
+      <label for="nome">Nome:</label>
+      <input type="text" [(ngModel)]="selectedNome" class="border-1 border-black inputs">
+    </div>
+  </div>
   <div class="mt-4">
-    <button type="button" class="btn btn-success" (click)="sair()">Salvar</button>
+    <button type="button" class="btn btn-success" (click)="salvar()">Salvar</button>
     <button type="button" class="btn btn-danger ms-2" (click)="sair()">Cancelar</button>
   </div>
 </div>

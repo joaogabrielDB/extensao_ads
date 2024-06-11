@@ -29,3 +29,14 @@ a:hover {
 .btn-alert:hover {
     background-color: #c7ac7b;
 }
+
+.toast-container {
+    z-index: 1500 !important;
+}
+
+.toast-top-right {
+    top: 12px;
+    right: 12px;
+    bottom: auto;
+    left: auto;
+  }
