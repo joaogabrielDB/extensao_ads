@@ -23,6 +23,8 @@ export class LoginComponent {
         this.toastr.success(res.message, 'SUCESSO:');
         localStorage.setItem('token', res.token);
         localStorage.setItem('userId', user.ID);
+        localStorage.setItem('userNome', user.NOME);
+        debugger
         this.router.navigate(['/home']);
       } else {
         this.toastr.error(res.message, 'ERRO:');

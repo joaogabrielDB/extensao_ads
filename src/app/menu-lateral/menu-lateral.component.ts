@@ -8,12 +8,14 @@ import { Router } from '@angular/router';
 })
 export class MenuLateralComponent {
 
+  public nome = localStorage.getItem('userNome');
+
   constructor(private router: Router) {}
 
   logout() {
-    // Limpe as informações de autenticação (por exemplo, remova o token do localStorage)
     localStorage.removeItem('token');
-    // Redirecione para a tela de login
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userNome');
     this.router.navigate(['/login']);
   }
   
