@@ -1,15 +1,7 @@
-// const { Sequelize } = require('sequelize');
-
-// const sequelize = new Sequelize('db_estudos', 'admin', 'r#StuV$*s=', {
-//   host: 'localhost',
-//   dialect: 'mysql'
-// });
-
-// module.exports = sequelize;
-
 module.exports = {
-  host: 'localhost',
-  user: 'root',
+  host    : 'localhost',
+  user    : 'joao',
   password: '1234',
-  database: 'STE'
+  database: 'STE',
+  connectTimeout: 40000 // Aumentando o timeout para 40 segundos
 };
