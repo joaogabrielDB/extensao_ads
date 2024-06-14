@@ -1,66 +1,136 @@
 <div class="menu-lateral">
     <app-menu-lateral></app-menu-lateral>
 </div>
-<div class="tela">
+<div class="tela" *ngIf="contentView == 1">
     <h1>Tarefas</h1>
     <div class="mt-5 mb-3">
-      <a href="#" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></a>
+      <button type="button" class="btn btn-primary" (click)="adicionar()"><i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
-    <div class="datagrid">
-        <div class="datagrid">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Disciplina</th>
-                    <th scope="col">Professor</th>
-                    <th scope="col">Categorias</th>
-                    <th scope="col">Data de Entrega</th>
-                  </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Tarefa 1</td>
-                    <td>Banco de dados</td>
-                    <td>Rogerio</td>
-                    <td>Importante</td>
-                    <td>01/06/2024</td>
-                    <td>
-                      <a href="#" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                      <a href="#" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                      <a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Tarefa 2</td>
-                    <td>Pesquisa e Ordenação</td>
-                    <td>Daniela</td>
-                    <td>Muito Importante</td>
-                    <td>10/06/2024</td>
-                    <td>
-                      <a href="#" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                      <a href="#" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                      <a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Tarefa 3</td>
-                    <td>Programação Orientada a Objeto</td>
-                    <td>Eduardo</td>
-                    <td>Pouco Importante</td>
-                    <td>12/06/2024</td>
-                    <td>
-                      <a href="#" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                      <a href="#" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                      <a href="#" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
+    <div class="col-11">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Disciplina</th>
+                <th scope="col">Professor</th>
+                <th scope="col">Categorias</th>
+                <th scope="col">Data de Entrega</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr *ngFor="let tarefa of tarefas; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ tarefa.TITULO }}</td>
+                <td>{{ tarefa.NOME_DISCIPLINA }}</td>
+                <td>{{ tarefa.PROF_DISCIPLINA }}</td>
+                <td>{{ tarefa.NOME_CATEGORIA }}</td>
+                <td>{{ tarefa.DTENTREGA }}</td>
+                <td>
+                  <button type="button" class="btn btn-primary" (click)="visualizar(tarefa)"><i class="fa fa-eye" aria-hidden="true"></i></button>
+              <button type="button" class="btn btn-success" (click)="editar(tarefa)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              <button type="button" class="btn btn-danger" (click)="deletar(tarefa)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                </td>
+              </tr>
+              <div *ngIf="tarefas.length == 0" class="text-center"><p>Nenhum dado encontrado</p></div>
+            </tbody>
+          </table>
     </div>
+</div>
+
+<div class="tela" *ngIf="contentView == 2">
+  <h1>Editar Disciplina</h1>
+  <div class="d-flex">
+    <div class="col-1 d-flex flex-column">
+      <label for="id">Id:</label>
+      <input type="number" [(ngModel)]="selectedId" class="border-1 border-black inputs" disabled>
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Título:</label>
+      <input type="text" [(ngModel)]="selectedTitulo" class="border-1 border-black inputs">
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Descrição:</label>
+      <input type="text" [(ngModel)]="selectedDescri" class="border-1 border-black inputs">
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Data de Entrega</label>
+      <input type="text" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Disciplina</label>
+      <input type="text" [(ngModel)]="selectedDiscip" class="border-1 border-black inputs">
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Categoria</label>
+      <input type="text" [(ngModel)]="selectedCatego" class="border-1 border-black inputs">
+    </div>
+  </div>
+  <div class="mt-4">
+    <button type="button" class="btn btn-success" (click)="salvar()">Salvar</button>
+    <button type="button" class="btn btn-alert ms-2" (click)="sair()">Voltar</button>
+  </div>
+</div>
+
+<div class="tela" *ngIf="contentView == 3">
+  <h1>Adicionar Disciplina</h1>
+  <div class="d-flex">
+    <div class="col-2 d-flex flex-column"> 
+      <label for="nome">Título:</label>
+      <input type="text" [(ngModel)]="selectedTitulo" class="border-1 border-black inputs">
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Descrição:</label>
+      <input type="text" [(ngModel)]="selectedDescri" class="border-1 border-black inputs">
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Data de Entrega</label>
+      <input type="text" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Disciplina</label>
+      <input type="text" [(ngModel)]="selectedDiscip" class="border-1 border-black inputs">
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Categoria</label>
+      <input type="text" [(ngModel)]="selectedCatego" class="border-1 border-black inputs">
+    </div>
+  </div>
+  <div class="mt-4">
+    <button type="button" class="btn btn-success" (click)="salvar()">Salvar</button>
+    <button type="button" class="btn btn-danger ms-2" (click)="sair()">Cancelar</button>
+  </div>
+</div>
+
+<div class="tela" *ngIf="contentView == 4">
+  <h1>Visualizar Disciplina</h1>
+  <div class="d-flex">
+    <div class="col-1 d-flex flex-column">
+      <label for="id">Id:</label>
+      <input type="number" [(ngModel)]="selectedId" class="border-1 border-black inputs" disabled>
+    </div>
+    <div class="col-2 d-flex flex-column"> 
+      <label for="nome">Título:</label>
+      <input type="text" [(ngModel)]="selectedTitulo" class="border-1 border-black inputs" disabled>
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Descrição:</label>
+      <input type="text" [(ngModel)]="selectedDescri" class="border-1 border-black inputs" disabled>
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Data de Entrega</label>
+      <input type="text" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs" disabled>
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Disciplina</label>
+      <input type="text" [(ngModel)]="selectedDiscip" class="border-1 border-black inputs" disabled>
+    </div>
+    <div class="col-2 d-flex flex-column ms-4"> 
+      <label for="nome">Categoria</label>
+      <input type="text" [(ngModel)]="selectedCatego" class="border-1 border-black inputs" disabled>
+    </div>
+  </div>
+  <div class="mt-4">
+    <button type="button" class="btn btn-alert" (click)="sair()">Voltar</button>
+  </div>
 </div>

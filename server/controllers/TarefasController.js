@@ -1,4 +1,4 @@
-const dao = require('../dao/DisciplicaDAO');
+const dao = require('../dao/TarefasDAO');
 
 const listar = (req, res)=>{
   const { id } = req.body;
@@ -6,7 +6,7 @@ const listar = (req, res)=>{
   dao.listar(id, (err, result) => {
     if(err) {
       console.log(err);
-      message = 'Erro ao criar usuário!';
+      message = 'Erro ao listar tarefa!';
       res.json({ blOk: false, message });
     }
 
@@ -21,7 +21,7 @@ const adicionar = (req, res)=>{
   dao.adicionar(req, (err, result) => {
     if(err) {
       console.log(err);
-      message = 'Erro ao criar usuário!';
+      message = 'Erro ao criar tarefa!';
       res.json({ blOk: false, message });
     }
 
@@ -36,7 +36,7 @@ const editar = (req, res)=>{
   dao.editar(req, (err, result) => {
     if(err) {
       console.log(err);
-      message = 'Erro ao criar usuário!';
+      message = 'Erro ao editar tarefa!';
       res.json({ blOk: false, message });
     }
 
@@ -51,7 +51,7 @@ const excluir = (req, res)=>{
   dao.excluir(req, (err, result) => {
     if(err) {
       console.log(err);
-      message = 'Erro ao deletar disciplina!';
+      message = 'Erro ao deletar tarefa!';
       res.json({ blOk: false, message });
     }
 
