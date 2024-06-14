@@ -8,7 +8,7 @@ const routeCadastro   = require('./routes/CadastroRoute.js'  );
 const routeLogin      = require('./routes/LoginRoute.js'     );
 const routeCategorias = require('./routes/CategoriasRoute.js');
 const routeDisciplina = require('./routes/DisciplinaRoute.js');
-const routeTarefa     = require('./routes/TarefaRoute.js'    );
+const routeTarefa     = require('./routes/TarefasRoute.js'   );
 
 
 const app  = express();
