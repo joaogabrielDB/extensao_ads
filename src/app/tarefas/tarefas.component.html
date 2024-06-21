@@ -7,34 +7,34 @@
       <button type="button" class="btn btn-primary" (click)="adicionar()"><i class="fa fa-plus" aria-hidden="true"></i></button>
     </div>
     <div class="col-11">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Disciplina</th>
-                <th scope="col">Professor</th>
-                <th scope="col">Categorias</th>
-                <th scope="col">Data de Entrega</th>
-              </tr>
-            </thead>
-            <tbody class="table-group-divider">
-              <tr *ngFor="let tarefa of tarefas; index as i">
-                <th scope="row">{{ i + 1 }}</th>
-                <td>{{ tarefa.TITULO }}</td>
-                <td>{{ tarefa.NOME_DISCIPLINA }}</td>
-                <td>{{ tarefa.PROF_DISCIPLINA }}</td>
-                <td>{{ tarefa.NOME_CATEGORIA }}</td>
-                <td>{{ tarefa.DTENTREGA }}</td>
-                <td>
-                  <button type="button" class="btn btn-primary" (click)="visualizar(tarefa)"><i class="fa fa-eye" aria-hidden="true"></i></button>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Disciplina</th>
+            <th scope="col">Professor</th>
+            <th scope="col">Categorias</th>
+            <th scope="col">Data de Entrega</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let tarefa of tarefas; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ tarefa.TITULO }}</td>
+            <td>{{ tarefa.NOME_DISCIPLINA }}</td>
+            <td>{{ tarefa.PROF_DISCIPLINA }}</td>
+            <td>{{ tarefa.NOME_CATEGORIA }}</td>
+            <td>{{ tarefa.DTENTREGA }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" (click)="visualizar(tarefa)"><i class="fa fa-eye" aria-hidden="true"></i></button>
               <button type="button" class="btn btn-success" (click)="editar(tarefa)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
               <button type="button" class="btn btn-danger" (click)="deletar(tarefa)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                </td>
-              </tr>
-              <div *ngIf="tarefas.length == 0" class="text-center"><p>Nenhum dado encontrado</p></div>
-            </tbody>
-          </table>
+            </td>
+          </tr>
+          <div *ngIf="tarefas.length == 0" class="text-center"><p>Nenhum dado encontrado</p></div>
+        </tbody>
+      </table>
     </div>
 </div>
 
@@ -55,15 +55,26 @@
     </div>
     <div class="col-2 d-flex flex-column ms-4"> 
       <label for="nome">Data de Entrega</label>
-      <input type="text" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
+      <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
+      <span *ngIf="selectedEntreg" class="d-none">
+        {{ selectedEntreg | dateFormatter }}
+      </span>
     </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Disciplina</label>
-      <input type="text" [(ngModel)]="selectedDiscip" class="border-1 border-black inputs">
+    <div class="col-2 d-flex flex-column ms-4">
+      <label for="disciplina">Disciplina</label>
+      <select [(ngModel)]="selectedDiscip" class="border-1 border-black inputs">
+        <option *ngFor="let disciplina of disciplinas" [ngValue]="disciplina.ID">
+          {{ disciplina.NOME }}
+        </option>
+      </select>
     </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Categoria</label>
-      <input type="text" [(ngModel)]="selectedCatego" class="border-1 border-black inputs">
+    <div class="col-2 d-flex flex-column ms-4">
+      <label for="categoria">Categoria</label>
+      <select [(ngModel)]="selectedCatego" class="border-1 border-black inputs">
+        <option *ngFor="let categoria of categorias" [ngValue]="categoria.ID">
+          {{ categoria.NOME }}
+        </option>
+      </select>
     </div>
   </div>
   <div class="mt-4">
@@ -85,15 +96,26 @@
     </div>
     <div class="col-2 d-flex flex-column ms-4"> 
       <label for="nome">Data de Entrega</label>
-      <input type="text" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
+      <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
+      <span *ngIf="selectedEntreg" class="d-none">
+        {{ selectedEntreg | dateFormatter }}
+      </span>
     </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Disciplina</label>
-      <input type="text" [(ngModel)]="selectedDiscip" class="border-1 border-black inputs">
+    <div class="col-2 d-flex flex-column ms-4">
+      <label for="disciplina">Disciplina</label>
+      <select [(ngModel)]="selectedDiscip" class="border-1 border-black inputs">
+        <option *ngFor="let disciplina of disciplinas" [ngValue]="disciplina.ID">
+          {{ disciplina.NOME }}
+        </option>
+      </select>
     </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Categoria</label>
-      <input type="text" [(ngModel)]="selectedCatego" class="border-1 border-black inputs">
+    <div class="col-2 d-flex flex-column ms-4">
+      <label for="categoria">Categoria</label>
+      <select [(ngModel)]="selectedCatego" class="border-1 border-black inputs">
+        <option *ngFor="let categoria of categorias" [ngValue]="categoria.ID">
+          {{ categoria.NOME }}
+        </option>
+      </select>
     </div>
   </div>
   <div class="mt-4">
@@ -119,7 +141,10 @@
     </div>
     <div class="col-2 d-flex flex-column ms-4"> 
       <label for="nome">Data de Entrega</label>
-      <input type="text" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs" disabled>
+      <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs" disabled>
+      <span *ngIf="selectedEntreg" class="d-none">
+        {{ selectedEntreg | dateFormatter }}
+      </span>
     </div>
     <div class="col-2 d-flex flex-column ms-4"> 
       <label for="nome">Disciplina</label>

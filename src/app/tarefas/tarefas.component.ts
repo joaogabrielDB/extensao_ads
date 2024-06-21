@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { TarefasService } from '../services/tarefas.service';
-import { ToastrService } from 'ngx-toastr';
+import { TarefasService    } from '../services/tarefas.service';
+import { ToastrService     } from 'ngx-toastr';
+import { DisciplinaService } from '../services/disciplina.service';
+import { CategoriasService } from '../services/categorias.service';
+import { LoginService      } from '../services/login.service';
 
 @Component({
-  selector: 'app-tarefas',
-  templateUrl: './tarefas.component.html',
-  styleUrl: './tarefas.component.scss'
+    selector   : 'app-tarefas'
+  , templateUrl: './tarefas.component.html'
+  , styleUrl   : './tarefas.component.scss'
 })
 export class TarefasComponent implements OnInit {
 
-  public contentView = 1;
-  public tarefas:any = [];
-  public userId = localStorage.getItem('userId');
+  public contentView   = 1;
+  public userId:number = this.loginService.getUserId();
+
+  public tarefas:any     = [];
+  public disciplinas:any = [];
+  public categorias:any  = [];
 
   public selectedId    :number | undefined; 
   public selectedTitulo:string | undefined; 
@@ -19,16 +25,21 @@ export class TarefasComponent implements OnInit {
   public selectedCadast:string | undefined;
   public selectedEntreg:string | undefined;
   public selectedUsuari:number | undefined;
-  public selectedDiscip:number | undefined;
-  public selectedCatego:number | undefined;
+  public selectedDiscip: { id: number; nome: string } | undefined;
+  public selectedCatego: { id: number; nome: string } | undefined;
 
   constructor(
-      private service: TarefasService
-    , private toastr : ToastrService
+      private service     : TarefasService
+    , private disciplina  : DisciplinaService
+    , private categoria   : CategoriasService
+    , private loginService:LoginService
+    , private toastr      : ToastrService
   ) {}
 
   ngOnInit(): void {
     this.getTarefas();
+    this.getDisciplinas();
+    this.getCategorias();
   }
 
   getTarefas() {
@@ -41,17 +52,36 @@ export class TarefasComponent implements OnInit {
     });
   }
 
+  getDisciplinas() {
+    this.disciplina.getDisciplinas(this.userId).subscribe((res: any) => {
+      if (res.blOk) {
+        this.disciplinas = res.data;
+      } else {
+        this.toastr.error(res.message, 'ERRO:');
+      }
+    });
+  }
+  
+  getCategorias() {
+    this.categoria.getCategorias(this.userId).subscribe((res: any) => {
+      if (res.blOk) {
+        this.categorias = res.data;
+      } else {
+        this.toastr.error(res.message, 'ERRO:');
+      }
+    });
+  }
+
   editar(tarefa: any) {
-    this.contentView = 2;
+    this.contentView    = 2;
     this.selectedId     = tarefa.ID;
     this.selectedTitulo = tarefa.TITULO;
     this.selectedDescri = tarefa.DESCRI;
     this.selectedCadast = tarefa.DTCADAST;
-    debugger
-    this.selectedEntreg = tarefa.DTENTREGA;
+    this.selectedEntreg = this.formatDate(tarefa.DTENTREGA);
     this.selectedUsuari = tarefa.ID_USUARIO;
-    this.selectedDiscip = tarefa.ID_DISCIPLINA;
-    this.selectedCatego = tarefa.ID_CATEGORIA;
+    this.selectedDiscip = this.disciplinas;
+    this.selectedCatego = this.categorias;
   }
 
   adicionar() {
@@ -59,15 +89,15 @@ export class TarefasComponent implements OnInit {
   }
 
   visualizar(tarefa: any) {
-    this.contentView = 4;
+    this.contentView    = 4;
     this.selectedId     = tarefa.ID;
     this.selectedTitulo = tarefa.TITULO;
     this.selectedDescri = tarefa.DESCRI;
     this.selectedCadast = tarefa.DTCADAST;
-    this.selectedEntreg = tarefa.DTENTREGA;
+    this.selectedEntreg = this.formatDate(tarefa.DTENTREGA);
     this.selectedUsuari = tarefa.ID_USUARIO;
-    this.selectedDiscip = tarefa.ID_DISCIPLINA;
-    this.selectedCatego = tarefa.ID_CATEGORIA;
+    this.selectedDiscip = this.disciplinas;
+    this.selectedCatego = this.categorias;
   }
 
   deletar(tarefa: any) {
@@ -121,16 +151,26 @@ export class TarefasComponent implements OnInit {
 
   sair() {
     this.selectedId     = undefined;
+    this.selectedUsuari = undefined;
+    this.selectedDiscip = undefined;
+    this.selectedCatego = undefined;
     this.selectedTitulo = "";
     this.selectedDescri = "";
     this.selectedCadast = "";
     this.selectedEntreg = "";
-    this.selectedUsuari = undefined;
-    this.selectedDiscip = undefined;
-    this.selectedCatego = undefined;
-    this.tarefas = [];
+    this.tarefas        = [];
+    this.contentView    = 1;
     this.getTarefas();
-    this.contentView = 1;
+  }
+
+  formatDate(dateString: string): string {
+    if (!dateString) {
+        return ''; 
+    }
+    const dateParts           = dateString.split('/');
+    const formattedDateParts  = [dateParts[2], dateParts[1], dateParts[0]];
+    const formattedDateString = formattedDateParts.join('/');
+    return formattedDateString;
   }
 
 }
