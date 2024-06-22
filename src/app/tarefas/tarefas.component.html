@@ -96,10 +96,10 @@
     </div>
     <div class="col-2 d-flex flex-column ms-4"> 
       <label for="nome">Data de Entrega</label>
-      <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
       <span *ngIf="selectedEntreg" class="d-none">
         {{ selectedEntreg | dateFormatter }}
       </span>
+      <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
     </div>
     <div class="col-2 d-flex flex-column ms-4">
       <label for="disciplina">Disciplina</label>
@@ -131,7 +131,7 @@
       <label for="id">Id:</label>
       <input type="number" [(ngModel)]="selectedId" class="border-1 border-black inputs" disabled>
     </div>
-    <div class="col-2 d-flex flex-column"> 
+    <div class="col-2 d-flex flex-column ms-4"> 
       <label for="nome">Título:</label>
       <input type="text" [(ngModel)]="selectedTitulo" class="border-1 border-black inputs" disabled>
     </div>

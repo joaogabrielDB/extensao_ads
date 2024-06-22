@@ -89,6 +89,7 @@ export class TarefasComponent implements OnInit {
   }
 
   visualizar(tarefa: any) {
+    debugger
     this.contentView    = 4;
     this.selectedId     = tarefa.ID;
     this.selectedTitulo = tarefa.TITULO;
@@ -96,8 +97,8 @@ export class TarefasComponent implements OnInit {
     this.selectedCadast = tarefa.DTCADAST;
     this.selectedEntreg = this.formatDate(tarefa.DTENTREGA);
     this.selectedUsuari = tarefa.ID_USUARIO;
-    this.selectedDiscip = this.disciplinas;
-    this.selectedCatego = this.categorias;
+    this.selectedDiscip = tarefa.NOME_DISCIPLINA;
+    this.selectedCatego = tarefa.NOME_CATEGORIA;
   }
 
   deletar(tarefa: any) {
@@ -167,7 +168,8 @@ export class TarefasComponent implements OnInit {
     if (!dateString) {
         return ''; 
     }
-    const dateParts           = dateString.split('/');
+    dateString = dateString.slice(0, 10);
+    const dateParts           = dateString.split('-');
     const formattedDateParts  = [dateParts[2], dateParts[1], dateParts[0]];
     const formattedDateString = formattedDateParts.join('/');
     return formattedDateString;

@@ -9,17 +9,17 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './disciplina.component.scss'
 })
 export class DisciplinaComponent implements OnInit {
-  public contentView = 1;
-  public disciplinas :any = [];
-  public userId      :number = this.loginService.getUserId();
-  public selectedId  :number | undefined; 
-  public selectedNome:string | undefined; 
-  public selectedProf:string | undefined; 
+  public contentView          = 1;
+  public disciplinas : any    = [];
+  public userId      : number = this.loginService.getUserId();
+  public selectedId  : number | undefined; 
+  public selectedNome: string | undefined; 
+  public selectedProf: string | undefined; 
 
   constructor(
-      private service     :DisciplinaService
-    , private loginService:LoginService
-    , private toastr      :ToastrService
+      private service     : DisciplinaService
+    , private loginService: LoginService
+    , private toastr      : ToastrService
   ) {}
 
   ngOnInit(): void {
