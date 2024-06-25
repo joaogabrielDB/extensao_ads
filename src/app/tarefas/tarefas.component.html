@@ -39,42 +39,47 @@
 </div>
 
 <div class="tela" *ngIf="contentView == 2">
-  <h1>Editar Disciplina</h1>
-  <div class="d-flex">
-    <div class="col-1 d-flex flex-column">
-      <label for="id">Id:</label>
-      <input type="number" [(ngModel)]="selectedId" class="border-1 border-black inputs" disabled>
+  <h1>Editar Tarefa</h1>
+  <div class="row">
+    <div class="d-flex col-12">
+      <div class="col-1 d-flex flex-column">
+        <label for="id">Id:</label>
+        <input type="number" [(ngModel)]="selectedId" class="border-1 border-black inputs" disabled>
+      </div>
+      <div class="col-3 d-flex flex-column ms-4"> 
+        <label for="nome">Título:</label>
+        <input type="text" [(ngModel)]="selectedTitulo" class="border-1 border-black inputs">
+      </div>
+      <div class="col-5 d-flex flex-column ms-4"> 
+        <label for="nome">Descrição:</label>
+        <input type="text" [(ngModel)]="selectedDescri" class="border-1 border-black inputs">
+      </div>
+      <div class="col-2 d-flex flex-column ms-4"> 
+        <label for="nome">Data de Entrega</label>
+        <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
+        <span *ngIf="selectedEntreg" class="d-none">
+          {{ selectedEntreg | dateFormatter }}
+        </span>
+      </div>
     </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Título:</label>
-      <input type="text" [(ngModel)]="selectedTitulo" class="border-1 border-black inputs">
-    </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Descrição:</label>
-      <input type="text" [(ngModel)]="selectedDescri" class="border-1 border-black inputs">
-    </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Data de Entrega</label>
-      <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
-      <span *ngIf="selectedEntreg" class="d-none">
-        {{ selectedEntreg | dateFormatter }}
-      </span>
-    </div>
-    <div class="col-2 d-flex flex-column ms-4">
-      <label for="disciplina">Disciplina</label>
-      <select [(ngModel)]="selectedDiscip" class="border-1 border-black inputs">
-        <option *ngFor="let disciplina of disciplinas" [ngValue]="disciplina.ID">
-          {{ disciplina.NOME }}
-        </option>
-      </select>
-    </div>
-    <div class="col-2 d-flex flex-column ms-4">
-      <label for="categoria">Categoria</label>
-      <select [(ngModel)]="selectedCatego" class="border-1 border-black inputs">
-        <option *ngFor="let categoria of categorias" [ngValue]="categoria.ID">
-          {{ categoria.NOME }}
-        </option>
-      </select>
+    
+    <div class="d-flex col-12 mt-3">
+      <div class="col-2 d-flex flex-column">
+        <label for="disciplina">Disciplina</label>
+        <select [(ngModel)]="selectedDiscip" class="border-1 border-black inputs">
+          <option *ngFor="let disciplina of disciplinas" [ngValue]="disciplina.ID">
+            {{ disciplina.NOME }}
+          </option>
+        </select>
+      </div>
+      <div class="col-2 d-flex flex-column ms-4">
+        <label for="categoria">Categoria</label>
+        <select [(ngModel)]="selectedCatego" class="border-1 border-black inputs">
+          <option *ngFor="let categoria of categorias" [ngValue]="categoria.ID">
+            {{ categoria.NOME }}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
   <div class="mt-4">
@@ -84,38 +89,42 @@
 </div>
 
 <div class="tela" *ngIf="contentView == 3">
-  <h1>Adicionar Disciplina</h1>
-  <div class="d-flex">
-    <div class="col-2 d-flex flex-column"> 
-      <label for="nome">Título:</label>
-      <input type="text" [(ngModel)]="selectedTitulo" class="border-1 border-black inputs">
+  <h1>Adicionar Tarefa</h1>
+  <div class="row">
+    <div class="col-12 d-flex">
+      <div class="col-4 d-flex flex-column"> 
+        <label for="nome">Título:</label>
+        <input type="text" [(ngModel)]="selectedTitulo" class="border-1 border-black inputs">
+      </div>
+      <div class="col-5 d-flex flex-column ms-4"> 
+        <label for="nome">Descrição:</label>
+        <input type="text" [(ngModel)]="selectedDescri" class="border-1 border-black inputs">
+      </div>
     </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Descrição:</label>
-      <input type="text" [(ngModel)]="selectedDescri" class="border-1 border-black inputs">
-    </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Data de Entrega</label>
-      <span *ngIf="selectedEntreg" class="d-none">
-        {{ selectedEntreg | dateFormatter }}
-      </span>
-      <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
-    </div>
-    <div class="col-2 d-flex flex-column ms-4">
-      <label for="disciplina">Disciplina</label>
-      <select [(ngModel)]="selectedDiscip" class="border-1 border-black inputs">
-        <option *ngFor="let disciplina of disciplinas" [ngValue]="disciplina.ID">
-          {{ disciplina.NOME }}
-        </option>
-      </select>
-    </div>
-    <div class="col-2 d-flex flex-column ms-4">
-      <label for="categoria">Categoria</label>
-      <select [(ngModel)]="selectedCatego" class="border-1 border-black inputs">
-        <option *ngFor="let categoria of categorias" [ngValue]="categoria.ID">
-          {{ categoria.NOME }}
-        </option>
-      </select>
+    <div class="col-12 d-flex">
+      <div class="col-2 d-flex flex-column"> 
+        <label for="nome">Data de Entrega</label>
+        <span *ngIf="selectedEntreg" class="d-none">
+          {{ selectedEntreg | dateFormatter }}
+        </span>
+        <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs">
+      </div>
+      <div class="col-2 d-flex flex-column ms-4">
+        <label for="disciplina">Disciplina</label>
+        <select [(ngModel)]="selectedDiscip" class="border-1 border-black inputs">
+          <option *ngFor="let disciplina of disciplinas" [ngValue]="disciplina.ID">
+            {{ disciplina.NOME }}
+          </option>
+        </select>
+      </div>
+      <div class="col-2 d-flex flex-column ms-4">
+        <label for="categoria">Categoria</label>
+        <select [(ngModel)]="selectedCatego" class="border-1 border-black inputs">
+          <option *ngFor="let categoria of categorias" [ngValue]="categoria.ID">
+            {{ categoria.NOME }}
+          </option>
+        </select>
+      </div>
     </div>
   </div>
   <div class="mt-4">
@@ -125,34 +134,38 @@
 </div>
 
 <div class="tela" *ngIf="contentView == 4">
-  <h1>Visualizar Disciplina</h1>
-  <div class="d-flex">
-    <div class="col-1 d-flex flex-column">
-      <label for="id">Id:</label>
-      <input type="number" [(ngModel)]="selectedId" class="border-1 border-black inputs" disabled>
+  <h1>Visualizar Tarefa</h1>
+  <div class="row">
+    <div class="d-flex col-12">
+      <div class="col-1 d-flex flex-column">
+        <label for="id">Id:</label>
+        <input type="number" [(ngModel)]="selectedId" class="border-1 border-black inputs" disabled>
+      </div>
+      <div class="col-3 d-flex flex-column ms-4"> 
+        <label for="nome">Título:</label>
+        <input type="text" [(ngModel)]="selectedTitulo" class="border-1 border-black inputs" disabled>
+      </div>
+      <div class="col-5 d-flex flex-column ms-4"> 
+        <label for="nome">Descrição:</label>
+        <input type="text" [(ngModel)]="selectedDescri" class="border-1 border-black inputs" disabled>
+      </div>
+      <div class="col-2 d-flex flex-column ms-4"> 
+        <label for="nome">Data de Entrega</label>
+        <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs" disabled>
+        <span *ngIf="selectedEntreg" class="d-none">
+          {{ selectedEntreg | dateFormatter }}
+        </span>
+      </div>
     </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Título:</label>
-      <input type="text" [(ngModel)]="selectedTitulo" class="border-1 border-black inputs" disabled>
-    </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Descrição:</label>
-      <input type="text" [(ngModel)]="selectedDescri" class="border-1 border-black inputs" disabled>
-    </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Data de Entrega</label>
-      <input type="date" [(ngModel)]="selectedEntreg" class="border-1 border-black inputs" disabled>
-      <span *ngIf="selectedEntreg" class="d-none">
-        {{ selectedEntreg | dateFormatter }}
-      </span>
-    </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Disciplina</label>
-      <input type="text" [(ngModel)]="selectedDiscip" class="border-1 border-black inputs" disabled>
-    </div>
-    <div class="col-2 d-flex flex-column ms-4"> 
-      <label for="nome">Categoria</label>
-      <input type="text" [(ngModel)]="selectedCatego" class="border-1 border-black inputs" disabled>
+    <div class="col-12 d-flex">
+      <div class="col-2 d-flex flex-column"> 
+        <label for="nome">Disciplina</label>
+        <input type="text" [(ngModel)]="selectedDiscip" class="border-1 border-black inputs" disabled>
+      </div>
+      <div class="col-2 d-flex flex-column ms-4"> 
+        <label for="nome">Categoria</label>
+        <input type="text" [(ngModel)]="selectedCatego" class="border-1 border-black inputs" disabled>
+      </div>
     </div>
   </div>
   <div class="mt-4">

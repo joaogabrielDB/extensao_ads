@@ -2,9 +2,9 @@
     <app-menu-lateral></app-menu-lateral>
 </div>
 <div class="tela">
-    <h1>Home</h1>
+    <h1>Calendário</h1>
 
-    <div class="container">
-        <full-calendar [options]="calendarOptions"></full-calendar>
+    <div class="container pb-5">
+        <full-calendar [options]="calendarOptions" *ngIf="tasksLoaded"></full-calendar>
     </div>
 </div>

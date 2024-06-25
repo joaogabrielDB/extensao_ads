@@ -79,8 +79,8 @@ export class TarefasComponent implements OnInit {
     this.selectedDescri = tarefa.DESCRI;
     this.selectedEntreg = this.formatDate2(tarefa.DTENTREGA);
     this.selectedUsuari = tarefa.ID_USUARIO;
-    this.selectedDiscip = this.disciplinas;
-    this.selectedCatego = this.categorias;
+    this.selectedDiscip = tarefa.ID_DISCIPLINA;
+    this.selectedCatego = tarefa.ID_CATEGORIA;
   }
 
   adicionar() {
@@ -110,6 +110,7 @@ export class TarefasComponent implements OnInit {
   }
 
   salvar() {
+    debugger
     let data: any = {};
     if(this.selectedId) {
       data.ID            = this.selectedId;

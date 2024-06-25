@@ -4,7 +4,8 @@
 
 <div class="tela">
     <h1>Perfil</h1>
-    <div class="d-flex">
+    <div class="row">
+      <div class="d-flex col-12">
         <div class="col-1 d-flex flex-column">
           <label for="id">Id:</label>
           <input type="number" [(ngModel)]="selectedId" class="border-1 border-black inputs" disabled>
@@ -13,11 +14,14 @@
           <label for="nome">Nome:</label>
           <input type="text" [(ngModel)]="selectedNome" class="border-1 border-black inputs">
         </div>
-        <div class="col-2 d-flex flex-column ms-4"> 
+        <div class="col-3 d-flex flex-column ms-4"> 
           <label for="nome">Email:</label>
           <input type="text" [(ngModel)]="selectedEmail" class="border-1 border-black inputs">
         </div>
-        <div class="col-2 d-flex flex-column ms-4"> 
+
+      </div>
+      <div class="d-flex col-12 mt-3">
+        <div class="col-2 d-flex flex-column"> 
             <label for="nome">Nova Senha:</label>
             <input type="text" [(ngModel)]="selectedSenha" class="border-1 border-black inputs">
           </div>
@@ -29,7 +33,8 @@
           </span>
         </div>
       </div>
-      <div class="mt-5">
-        <button type="button" class="btn btn-success" (click)="salvar()">Salvar</button>
-      </div>
+    </div>
+    <div class="mt-4">
+      <button type="button" class="btn btn-success" (click)="salvar()">Salvar</button>
+    </div>
 </div>
