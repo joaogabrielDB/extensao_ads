@@ -77,8 +77,7 @@ export class TarefasComponent implements OnInit {
     this.selectedId     = tarefa.ID;
     this.selectedTitulo = tarefa.TITULO;
     this.selectedDescri = tarefa.DESCRI;
-    this.selectedCadast = tarefa.DTCADAST;
-    this.selectedEntreg = this.formatDate(tarefa.DTENTREGA);
+    this.selectedEntreg = this.formatDate2(tarefa.DTENTREGA);
     this.selectedUsuari = tarefa.ID_USUARIO;
     this.selectedDiscip = this.disciplinas;
     this.selectedCatego = this.categorias;
@@ -89,13 +88,11 @@ export class TarefasComponent implements OnInit {
   }
 
   visualizar(tarefa: any) {
-    debugger
     this.contentView    = 4;
     this.selectedId     = tarefa.ID;
     this.selectedTitulo = tarefa.TITULO;
     this.selectedDescri = tarefa.DESCRI;
-    this.selectedCadast = tarefa.DTCADAST;
-    this.selectedEntreg = this.formatDate(tarefa.DTENTREGA);
+    this.selectedEntreg = this.formatDate2(tarefa.DTENTREGA);
     this.selectedUsuari = tarefa.ID_USUARIO;
     this.selectedDiscip = tarefa.NOME_DISCIPLINA;
     this.selectedCatego = tarefa.NOME_CATEGORIA;
@@ -172,6 +169,17 @@ export class TarefasComponent implements OnInit {
     const dateParts           = dateString.split('-');
     const formattedDateParts  = [dateParts[2], dateParts[1], dateParts[0]];
     const formattedDateString = formattedDateParts.join('/');
+    return formattedDateString;
+  }
+
+  formatDate2(dateString: string): string {
+    if (!dateString) {
+        return ''; 
+    }
+    dateString = dateString.slice(0, 10);
+    const dateParts           = dateString.split('-');
+    const formattedDateParts  = [dateParts[0], dateParts[1], dateParts[2] ];
+    const formattedDateString = formattedDateParts.join('-');
     return formattedDateString;
   }
 

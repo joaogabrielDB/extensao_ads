@@ -25,7 +25,7 @@
             <td>{{ tarefa.NOME_DISCIPLINA }}</td>
             <td>{{ tarefa.PROF_DISCIPLINA }}</td>
             <td>{{ tarefa.NOME_CATEGORIA }}</td>
-            <td>{{ tarefa.DTENTREGA }}</td>
+            <td>{{ formatDate(tarefa.DTENTREGA) }}</td>
             <td>
               <button type="button" class="btn btn-primary" (click)="visualizar(tarefa)"><i class="fa fa-eye" aria-hidden="true"></i></button>
               <button type="button" class="btn btn-success" (click)="editar(tarefa)"><i class="fa fa-pencil" aria-hidden="true"></i></button>

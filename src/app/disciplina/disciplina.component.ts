@@ -37,8 +37,8 @@ export class DisciplinaComponent implements OnInit {
   }
 
   editar(disciplina: any) {
-    this.contentView = 2;
-    this.selectedId = disciplina.ID;
+    this.contentView  = 2;
+    this.selectedId   = disciplina.ID;
     this.selectedNome = disciplina.NOME;
     this.selectedProf = disciplina.PROF;
   }
@@ -48,8 +48,8 @@ export class DisciplinaComponent implements OnInit {
   }
 
   visualizar(disciplina: any) {
-    this.contentView = 4;
-    this.selectedId = disciplina.ID;
+    this.contentView  = 4;
+    this.selectedId   = disciplina.ID;
     this.selectedNome = disciplina.NOME;
     this.selectedProf = disciplina.PROF;
   }
@@ -68,9 +68,9 @@ export class DisciplinaComponent implements OnInit {
   salvar() {
     let data: any = {};
     if(this.selectedId) {
-      data.ID = this.selectedId;
-      data.NOME = this.selectedNome;
-      data.PROF = this.selectedProf;
+      data.ID         = this.selectedId;
+      data.NOME       = this.selectedNome;
+      data.PROF       = this.selectedProf;
       data.ID_USUARIO = this.userId;
       this.service.editarDisciplina(data).subscribe((res:any) => {
         if(res.blOk) {
@@ -81,8 +81,8 @@ export class DisciplinaComponent implements OnInit {
         }
       });
     } else {
-      data.NOME = this.selectedNome;
-      data.PROF = this.selectedProf;
+      data.NOME       = this.selectedNome;
+      data.PROF       = this.selectedProf;
       data.ID_USUARIO = this.userId;
       this.service.addDisciplina(data).subscribe((res:any) => {
         if(res.blOk) {
@@ -96,10 +96,10 @@ export class DisciplinaComponent implements OnInit {
   }
 
   sair() {
-    this.selectedId = undefined;
+    this.selectedId   = undefined;
     this.selectedNome = "";
     this.selectedProf = "";
-    this.disciplinas = [];
+    this.disciplinas  = [];
     this.getDisciplinas();
     this.contentView = 1;
   }

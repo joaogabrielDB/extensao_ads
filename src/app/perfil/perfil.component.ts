@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PerfilComponent {
   public contentView = 1;
-  public disciplinas    :any    = [];
+  public perfilUser     :any    = {};
   public userId         :number = this.loginService.getUserId();
   public selectedId     :number | undefined; 
   public selectedNome   :string | undefined; 
@@ -25,84 +25,58 @@ export class PerfilComponent {
   ) {}
 
   ngOnInit(): void {
-    this.getDisciplinas();
+    this.getPerfil();
+    
   }
 
-  getDisciplinas() {
-    this.service.getDisciplinas(this.userId).subscribe((res:any) => {
+  getPerfil() {
+    this.service.getPerfil(this.userId).subscribe((res:any) => {
       if(res.blOk) {
-        this.disciplinas = res.data;
+        this.perfilUser      = res.data[0];
+        this.selectedId      = this.perfilUser.ID;
+        this.selectedNome    = this.perfilUser.NOME;
+        this.selectedEmail   = this.perfilUser.EMAIL;
+        this.selectedDataCad = this.formatDate(this.perfilUser.DTCADAST);
       } else {
         this.toastr.error(res.message, 'ERRO:');
       }
     });
   }
 
-  editar(disciplina: any) {
-    this.contentView = 2;
-    this.selectedId = disciplina.ID;
-    this.selectedNome = disciplina.NOME;
-    this.selectedEmail = disciplina.PROF;
-  }
-
-  adicionar() {
-    this.contentView = 3;
-  }
-
-  visualizar(disciplina: any) {
-    this.contentView = 4;
-    this.selectedId = disciplina.ID;
-    this.selectedNome = disciplina.NOME;
-    this.selectedEmail = disciplina.PROF;
-  }
-
-  deletar(disciplina: any) {
-    this.service.excluirDisciplina(disciplina.ID).subscribe((res:any) => {
+  salvar() {
+    let data: any = {};
+    data.ID         = this.selectedId;
+    data.NOME       = this.selectedNome;
+    data.EMAIL      = this.selectedEmail;
+    data.PASSWORD   = this.selectedSenha;
+    this.service.editarPerfil(data).subscribe((res:any) => {
       if(res.blOk) {
-        this.toastr.success("Disciplina excluida!", 'SUCESSO:');
-        this.sair();
+        this.toastr.success("Perfil editado!", 'SUCESSO:');
+        this.limpar();
       } else {
-        this.toastr.error('Falha ao excluir disciplina!', 'ERRO:');
+        this.toastr.error('Falha ao editar seu perfil!', 'ERRO:');
       }
     });
   }
 
-  salvar() {
-    let data: any = {};
-    if(this.selectedId) {
-      data.ID         = this.selectedId;
-      data.NOME       = this.selectedNome;
-      data.PROF       = this.selectedEmail;
-      data.ID_USUARIO = this.userId;
-      this.service.editarDisciplina(data).subscribe((res:any) => {
-        if(res.blOk) {
-          this.toastr.success("Disciplina editada!", 'SUCESSO:');
-          this.sair();
-        } else {
-          this.toastr.error('Falha ao editar disciplina!', 'ERRO:');
-        }
-      });
-    } else {
-      data.NOME = this.selectedNome;
-      data.PROF = this.selectedEmail;
-      data.ID_USUARIO = this.userId;
-      this.service.addDisciplina(data).subscribe((res:any) => {
-        if(res.blOk) {
-          this.toastr.success("Disciplina salva!", 'SUCESSO:');
-          this.sair();
-        } else {
-          this.toastr.error('Falha ao salvar disciplina!', 'ERRO:');
-        }
-      });
+  formatDate(dateString: string): string {
+    if (!dateString) {
+        return ''; 
     }
+    dateString = dateString.slice(0, 10);
+    const dateParts           = dateString.split('-');
+    const formattedDateParts  = [dateParts[0], dateParts[1], dateParts[2] ];
+    const formattedDateString = formattedDateParts.join('-');
+    return formattedDateString;
   }
 
-  sair() {
-    this.selectedId    = undefined;
-    this.selectedNome  = "";
-    this.selectedEmail = "";
-    this.disciplinas   = [];
-    this.contentView   = 1;
-    this.getDisciplinas();
+  limpar() {
+    this.selectedId      = undefined;
+    this.selectedNome    = '';
+    this.selectedSenha   = '';
+    this.selectedEmail   = '';
+    this.selectedDataCad = '';
+    this.getPerfil();
   }
+
 }

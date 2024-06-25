@@ -20,4 +20,39 @@ const cadastroUsuario = (nome, email, password, callback) => {
     db.query(query, [nome, email, password], callback);
 };
 
-module.exports = { cadastroUsuario };
+const dados = (id, callback) => {
+    db.query(`SELECT * FROM USUARIOS WHERE ID = ${id}`, (error, result) => {
+        if (error) {
+            console.error('Erro na consulta:', error);
+            callback(error, null);
+        } else {
+            callback(null, result);
+        }
+    });
+};
+
+const editarSenha = (req, callback) => {
+    db.query(`UPDATE USUARIOS SET USUARIOS.NOME = '${req.body.data.NOME}', USUARIOS.EMAIL = '${req.body.data.EMAIL}',
+        USUARIOS.PASSWORD = '${req.body.data.PASSWORD}'  WHERE USUARIOS.ID = ${req.body.data.ID}`, (error, results) => {
+      if (error) {
+        console.error('Erro na consulta:', error);
+        callback(error, null);
+      } else {
+        callback(null, results);
+      }
+    });
+};
+
+const editar = (req, callback) => {
+    db.query(`UPDATE USUARIOS SET USUARIOS.NOME = '${req.body.data.NOME}', USUARIOS.EMAIL = '${req.body.data.EMAIL}'
+              WHERE USUARIOS.ID = ${req.body.data.ID}`, (error, results) => {
+      if (error) {
+        console.error('Erro na consulta:', error);
+        callback(error, null);
+      } else {
+        callback(null, results);
+      }
+    });
+};
+
+module.exports = { cadastroUsuario, dados, editar, editarSenha };

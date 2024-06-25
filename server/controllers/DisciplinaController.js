@@ -6,7 +6,7 @@ const listar = (req, res)=>{
   dao.listar(id, (err, result) => {
     if(err) {
       console.log(err);
-      message = 'Erro ao criar usuário!';
+      message = 'Erro ao listar disciplinas!';
       res.json({ blOk: false, message });
     }
 
@@ -21,7 +21,7 @@ const adicionar = (req, res)=>{
   dao.adicionar(req, (err, result) => {
     if(err) {
       console.log(err);
-      message = 'Erro ao criar usuário!';
+      message = 'Erro ao criar disciplina!';
       res.json({ blOk: false, message });
     }
 
@@ -36,7 +36,7 @@ const editar = (req, res)=>{
   dao.editar(req, (err, result) => {
     if(err) {
       console.log(err);
-      message = 'Erro ao criar usuário!';
+      message = 'Erro ao editar disciplina!';
       res.json({ blOk: false, message });
     }
 

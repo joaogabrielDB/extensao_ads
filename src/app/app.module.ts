@@ -4,6 +4,7 @@ import { BrowserModule               } from '@angular/platform-browser';
 import { HttpClientModule            } from '@angular/common/http';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { BrowserAnimationsModule     } from '@angular/platform-browser/animations';
+import { FullCalendarModule          } from '@fullcalendar/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent     } from './app.component';
@@ -42,6 +43,7 @@ import { HomeComponent        } from './home/home.component';
         ,preventDuplicates: true
       })
     , BrowserAnimationsModule 
+    , FullCalendarModule 
   ],
   providers: [
     ToastrService

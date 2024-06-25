@@ -9,19 +9,11 @@ export class PerfilService {
 
   constructor(private http: HttpClient) { }
 
-  getDisciplinas(id: number) {
-    return this.http.post(`${this.apiUrl}/disciplina/listar`, {id});
+  getPerfil(id: number) {
+    return this.http.post(`${this.apiUrl}/cadastro/dados`, {id});
   }
 
-  addDisciplina(data: any) {
-    return this.http.post(`${this.apiUrl}/disciplina/adicionar`, {data});
-  }
-
-  editarDisciplina(data: any) {
-    return this.http.post(`${this.apiUrl}/disciplina/editar`, {data});
-  }
-
-  excluirDisciplina(data: any) {
-    return this.http.post(`${this.apiUrl}/disciplina/excluir`, {data});
+  editarPerfil(data: any) {
+    return this.http.post(`${this.apiUrl}/cadastro/editar`, {data});
   }
 }
