@@ -8,7 +8,7 @@ Integrantes: Gabriel Eduardo, João Gabriel e Joice Cristina
 <br><br>
 <a href="https://dev.mysql.com/downloads/installer/">MySQL</a>
 <br><br>
-Angular: npm install -g @angular/cli
+Angular: npm install -g @angular/cli@17.0.0
 
 
 ## Para rodar
